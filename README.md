@@ -1,6 +1,6 @@
 # saral_urja
 
-A new Flutter project.
+Flutter project using Event Bus using Dart Streams for decoupling applications
 
 ## Getting Started
 
