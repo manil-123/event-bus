@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String>? provinceList;
   List<List<Districts>>? districtList;
   int index = 0;
+  int districtId = 0;
 
   getData() {
     provinceValue = response.data![0].name;
@@ -52,9 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 onChanged: (String? newValue) {
                   setState(() {
                     index = provinceList!.indexOf(newValue!);
-                    print(index);
                     getData();
-                    provinceValue = newValue!;
+                    provinceValue = newValue;
                   });
                 },
                 items:
@@ -81,6 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   setState(() {
                     //index = provinceList!.indexOf(newValue!);
                     districtValue = newValue!;
+                    int disIndex = districtList![index]
+                        .map((e) => e.name!)
+                        .toList()
+                        .indexOf(newValue);
+                    districtId = districtList![index][disIndex].id!;
                   });
                 },
                 items: (districtList![index].map((e) => e.name!).toList())
@@ -91,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }).toList(),
               ),
+              Text('District Id $districtId'),
             ],
           ),
         ));
